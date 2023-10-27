@@ -33,6 +33,10 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tbRenameBuck = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.AnimationInterface = new System.Windows.Forms.CheckBox();
+            this.Internet = new System.Windows.Forms.CheckBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.cbChangedTheme = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -78,25 +82,62 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(279, 257);
+            this.richTextBox1.Location = new System.Drawing.Point(413, 317);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(187, 96);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
+            // AnimationInterface
+            // 
+            this.AnimationInterface.AutoSize = true;
+            this.AnimationInterface.Location = new System.Drawing.Point(235, 49);
+            this.AnimationInterface.Name = "AnimationInterface";
+            this.AnimationInterface.Size = new System.Drawing.Size(198, 17);
+            this.AnimationInterface.TabIndex = 5;
+            this.AnimationInterface.Text = "Отключить аниамции интерфейса";
+            this.AnimationInterface.UseVisualStyleBackColor = true;
+            this.AnimationInterface.CheckedChanged += new System.EventHandler(this.AnimationInterface_CheckedChanged);
+            // 
+            // Internet
+            // 
+            this.Internet.AutoSize = true;
+            this.Internet.Location = new System.Drawing.Point(457, 49);
+            this.Internet.Name = "Internet";
+            this.Internet.Size = new System.Drawing.Size(143, 17);
+            this.Internet.TabIndex = 6;
+            this.Internet.Text = "Отключение интернета";
+            this.Internet.UseVisualStyleBackColor = true;
+            this.Internet.CheckedChanged += new System.EventHandler(this.Internet_CheckedChanged);
+            // 
+            // cbChangedTheme
+            // 
+            this.cbChangedTheme.AutoSize = true;
+            this.cbChangedTheme.Location = new System.Drawing.Point(235, 76);
+            this.cbChangedTheme.Name = "cbChangedTheme";
+            this.cbChangedTheme.Size = new System.Drawing.Size(211, 17);
+            this.cbChangedTheme.TabIndex = 7;
+            this.cbChangedTheme.Text = "Смена темы на темную или светлую";
+            this.cbChangedTheme.UseVisualStyleBackColor = true;
+            this.cbChangedTheme.CheckedChanged += new System.EventHandler(this.cbChangedTheme_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 545);
+            this.Controls.Add(this.Internet);
+            this.Controls.Add(this.AnimationInterface);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.tbRenameBuck);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.btnApp);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbChangedTheme);
             this.Name = "Form1";
             this.Text = "r";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,6 +150,10 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox tbRenameBuck;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.CheckBox AnimationInterface;
+        private System.Windows.Forms.CheckBox Internet;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.CheckBox cbChangedTheme;
     }
 }
 
