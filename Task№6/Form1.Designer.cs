@@ -37,6 +37,14 @@
             this.Internet = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.cbChangedTheme = new System.Windows.Forms.CheckBox();
+            this.cbTime = new System.Windows.Forms.CheckBox();
+            this.cbOpacity = new System.Windows.Forms.CheckBox();
+            this.Bng = new System.Windows.Forms.CheckBox();
+            this.NumLck = new System.Windows.Forms.CheckBox();
+            this.dir = new System.Windows.Forms.CheckBox();
+            this.cbChangeFonts = new System.Windows.Forms.CheckBox();
+            this.tbFonts = new System.Windows.Forms.TextBox();
+            this.defrag = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -122,11 +130,102 @@
             this.cbChangedTheme.UseVisualStyleBackColor = true;
             this.cbChangedTheme.CheckedChanged += new System.EventHandler(this.cbChangedTheme_CheckedChanged);
             // 
+            // cbTime
+            // 
+            this.cbTime.AutoSize = true;
+            this.cbTime.Location = new System.Drawing.Point(457, 75);
+            this.cbTime.Name = "cbTime";
+            this.cbTime.Size = new System.Drawing.Size(232, 17);
+            this.cbTime.TabIndex = 8;
+            this.cbTime.Text = "Включение и отключение секунд в часах";
+            this.cbTime.UseVisualStyleBackColor = true;
+            this.cbTime.CheckedChanged += new System.EventHandler(this.cbTime_CheckedChanged);
+            // 
+            // cbOpacity
+            // 
+            this.cbOpacity.AutoSize = true;
+            this.cbOpacity.Location = new System.Drawing.Point(235, 100);
+            this.cbOpacity.Name = "cbOpacity";
+            this.cbOpacity.Size = new System.Drawing.Size(203, 17);
+            this.cbOpacity.TabIndex = 9;
+            this.cbOpacity.Text = "Смена прозрачности панели задач";
+            this.cbOpacity.UseVisualStyleBackColor = true;
+            this.cbOpacity.CheckedChanged += new System.EventHandler(this.cbOpacity_CheckedChanged);
+            // 
+            // Bng
+            // 
+            this.Bng.AutoSize = true;
+            this.Bng.Location = new System.Drawing.Point(457, 100);
+            this.Bng.Name = "Bng";
+            this.Bng.Size = new System.Drawing.Size(179, 17);
+            this.Bng.TabIndex = 10;
+            this.Bng.Text = "Отключение и включение Bing";
+            this.Bng.UseVisualStyleBackColor = true;
+            // 
+            // NumLck
+            // 
+            this.NumLck.AutoSize = true;
+            this.NumLck.Location = new System.Drawing.Point(235, 124);
+            this.NumLck.Name = "NumLck";
+            this.NumLck.Size = new System.Drawing.Size(214, 17);
+            this.NumLck.TabIndex = 11;
+            this.NumLck.Text = "Автозапуск NumLock при запуске пк";
+            this.NumLck.UseVisualStyleBackColor = true;
+            // 
+            // dir
+            // 
+            this.dir.AutoSize = true;
+            this.dir.Location = new System.Drawing.Point(457, 124);
+            this.dir.Name = "dir";
+            this.dir.Size = new System.Drawing.Size(334, 30);
+            this.dir.TabIndex = 12;
+            this.dir.Text = "Включение и отключение функции «Копировать в папку…» и \n«Переместить в папку…» в " +
+    "контекстном меню";
+            this.dir.UseVisualStyleBackColor = true;
+            // 
+            // cbChangeFonts
+            // 
+            this.cbChangeFonts.AutoSize = true;
+            this.cbChangeFonts.Location = new System.Drawing.Point(12, 100);
+            this.cbChangeFonts.Name = "cbChangeFonts";
+            this.cbChangeFonts.Size = new System.Drawing.Size(126, 17);
+            this.cbChangeFonts.TabIndex = 13;
+            this.cbChangeFonts.Text = "Изменение шрифта";
+            this.cbChangeFonts.UseVisualStyleBackColor = true;
+            this.cbChangeFonts.CheckedChanged += new System.EventHandler(this.cbChangeFonts_CheckedChanged);
+            // 
+            // tbFonts
+            // 
+            this.tbFonts.Location = new System.Drawing.Point(12, 121);
+            this.tbFonts.Name = "tbFonts";
+            this.tbFonts.Size = new System.Drawing.Size(174, 20);
+            this.tbFonts.TabIndex = 14;
+            this.tbFonts.TextChanged += new System.EventHandler(this.tbFonts_TextChanged);
+            // 
+            // defrag
+            // 
+            this.defrag.AutoSize = true;
+            this.defrag.Location = new System.Drawing.Point(235, 147);
+            this.defrag.Name = "defrag";
+            this.defrag.Size = new System.Drawing.Size(165, 17);
+            this.defrag.TabIndex = 15;
+            this.defrag.Text = "Включение дефрагметации";
+            this.defrag.UseVisualStyleBackColor = true;
+            this.defrag.CheckedChanged += new System.EventHandler(this.defrag_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 545);
+            this.Controls.Add(this.defrag);
+            this.Controls.Add(this.tbFonts);
+            this.Controls.Add(this.cbChangeFonts);
+            this.Controls.Add(this.dir);
+            this.Controls.Add(this.NumLck);
+            this.Controls.Add(this.Bng);
+            this.Controls.Add(this.cbOpacity);
+            this.Controls.Add(this.cbTime);
             this.Controls.Add(this.Internet);
             this.Controls.Add(this.AnimationInterface);
             this.Controls.Add(this.richTextBox1);
@@ -154,6 +253,14 @@
         private System.Windows.Forms.CheckBox Internet;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.CheckBox cbChangedTheme;
+        private System.Windows.Forms.CheckBox cbTime;
+        private System.Windows.Forms.CheckBox cbOpacity;
+        private System.Windows.Forms.CheckBox Bng;
+        private System.Windows.Forms.CheckBox NumLck;
+        private System.Windows.Forms.CheckBox dir;
+        private System.Windows.Forms.CheckBox cbChangeFonts;
+        private System.Windows.Forms.TextBox tbFonts;
+        private System.Windows.Forms.CheckBox defrag;
     }
 }
 
