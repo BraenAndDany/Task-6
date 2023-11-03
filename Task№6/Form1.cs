@@ -20,6 +20,7 @@ namespace Task_6
         public Form1()
         {
             InitializeComponent();
+            AllIsReadyOrNot();
         }
         void InternetConnection(string str)
         {
@@ -107,28 +108,80 @@ namespace Task_6
             }
         }
 
+        //метод с добовление\отключением дефрагмантации
         public void dfrg()
         {
             if (defrag.Checked == true)
             {
                 RegistryKey keyAuto = Registry.ClassesRoot;
                 RegistryKey OpenDF = keyAuto.OpenSubKey("Directory\\background\\shell", true);
-                OpenDF.CreateSubKey("Dafrag");
-                OpenDF.OpenSubKey("Dafrag");
-                OpenDF.CreateSubKey("command");
-                OpenDF.OpenSubKey("command");
-                OpenDF.SetValue("", "\"C:\\Windows\\System32\\dfrgui.exe\"");
+                OpenDF.CreateSubKey("Defrag");
+                RegistryKey OpenDF1 = OpenDF.OpenSubKey("Defrag", true);
+                OpenDF1.CreateSubKey("command");
+                RegistryKey OpenDF2 = OpenDF1.OpenSubKey("command", true);
+                OpenDF2.SetValue("", "\"C:\\Windows\\System32\\dfrgui.exe\"");
             }
             else
             {
-                //RegistryKey keyAuto = Registry.ClassesRoot;
-                //RegistryKey OpenDF = keyAuto.OpenSubKey("Directory\\background\\shell", true);
-                //OpenDF.CreateSubKey("Dafrag");
-                //OpenDF = OpenDF.OpenSubKey("\\Dafrag");
-                //OpenDF.CreateSubKey("command");
-                //OpenDF.SetValue("", "\"C:\\Windows\\System32\\dfrgui.exe\"");
+                try
+                {
+                    RegistryKey keyAuto = Registry.ClassesRoot;
+                    RegistryKey OpenDF = keyAuto.OpenSubKey("Directory\\background\\shell", true);
+                    OpenDF.DeleteSubKeyTree("Defrag");
+                }
+                catch
+                {
+
+                }
             }
         }
+
+        //тоже самое, но это цмд
+        public void cmd()
+        {
+            if (cmdshka.Checked == true)
+            {
+                RegistryKey keyAuto = Registry.ClassesRoot;
+                RegistryKey OpenDF = keyAuto.OpenSubKey("Directory\\background\\shell", true);
+                OpenDF.CreateSubKey("cmdshka");
+                RegistryKey OpenDF1 = OpenDF.OpenSubKey("cmdshka", true);
+                OpenDF1.CreateSubKey("command");
+                RegistryKey OpenDF2 = OpenDF1.OpenSubKey("command", true);
+                OpenDF2.SetValue("", "\"C:\\Windows\\System32\\cmd.exe\"");
+            }
+            else
+            {
+                //тру для вычитания из уравнения ошибки при удалении пустой папки
+                try
+                {
+                    RegistryKey keyAuto = Registry.ClassesRoot;
+                    RegistryKey OpenDF = keyAuto.OpenSubKey("Directory\\background\\shell", true);
+                    OpenDF.DeleteSubKeyTree("cmdshka");
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        //Включение\отключение уведомлений
+        public void Notifications()
+        {
+            if (PushNotifications.Checked == true)
+            {
+                RegistryKey keyAuto = Registry.CurrentUser;
+                RegistryKey time = keyAuto.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer", true);
+                time.SetValue("DisableNotificationCenter", "1", RegistryValueKind.DWord);
+            }
+            else
+            {
+                RegistryKey keyAuto = Registry.CurrentUser;
+                RegistryKey time = keyAuto.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer", true);
+                time.SetValue("DisableNotificationCenter", "0", RegistryValueKind.DWord);
+            }
+        }
+
         public void Bing()
         {
             if (Bng.Checked == true)
@@ -197,13 +250,44 @@ namespace Task_6
 
         public void ChangeFonts()
         {
-            if(cbChangeFonts.Checked == true)
-            {
                 RegistryKey keyAuto = Registry.LocalMachine;
                 RegistryKey fonts = keyAuto.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\FontSubstitutes", true);
-                fonts.SetValue("Segoe UI", tbFonts.Text);
-            }
+                fonts.SetValue("Segoe UI", tbFonts.Text);                
         }
+
+        public void AllIsReadyOrNot()
+        {
+                RegistryKey keyAuto0 = Registry.LocalMachine;
+                RegistryKey fonts = keyAuto0.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\FontSubstitutes", true);
+                tbFonts.Text = (string) fonts.GetValue("Segoe UI");
+
+                RegistryKey keyAuto1 = Registry.ClassesRoot;
+                RegistryKey copy = keyAuto1.OpenSubKey("AllFilesystemObjects\\shellex\\ContextMenuHandlers\\Copy To", true);
+                if (copy.GetValue("") == "{C2FBB630-2971-11D1-A18C-00C04FD75D13}")
+                {
+                    dir.Checked = true;
+                }
+
+            RegistryKey keyAuto2 = Registry.Users;
+            RegistryKey opacity0 = keyAuto2.OpenSubKey(".DEFAULT\\Control Panel\\Keyboard", true);
+            if (opacity0.GetValue("InitialKeyboardIndicators") == "2")
+            {
+                NumLck.Checked = true;
+            }
+
+            RegistryKey keyAuto3 = Registry.CurrentUser;
+            RegistryKey opacity1 = keyAuto3.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+            if (opacity1.GetValue("EnableTransparency", RegistryValueKind.DWord) == "1")
+            {
+                cbOpacity.Checked = true;
+            }
+
+
+
+
+
+        }
+
         private void btnApp_Click(object sender, EventArgs e)
         {
             RegistryKey keyAuto = Registry.ClassesRoot;
@@ -211,17 +295,19 @@ namespace Task_6
             RegistryKey copy = opacity.CreateSubKey("Copy To");
             RegistryKey move = opacity.CreateSubKey("Move To");
             opacity.Close();
-            //AnimInter();
-            //InternetConect();
-            //Time();
-            //Opacitybk();
-            //ChangedTheme();
-            //RenameBucket();
-            //Bing();
-            //NumLock();
-            //Copy();
-            //ChangeFonts();
+            AnimInter();
+            InternetConect();
+            Time();
+            Opacitybk();
+            ChangedTheme();
+            RenameBucket();
+            Bing();
+            NumLock();
+            Copy();
+            ChangeFonts();
             dfrg();
+            cmd();
+            Notifications();
         }
 
         private void tbRenameBuck_TextChanged(object sender, EventArgs e)
@@ -275,6 +361,11 @@ namespace Task_6
         }
 
         private void defrag_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdshka_CheckedChanged(object sender, EventArgs e)
         {
 
         }

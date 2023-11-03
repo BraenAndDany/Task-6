@@ -45,6 +45,8 @@
             this.cbChangeFonts = new System.Windows.Forms.CheckBox();
             this.tbFonts = new System.Windows.Forms.TextBox();
             this.defrag = new System.Windows.Forms.CheckBox();
+            this.cmdshka = new System.Windows.Forms.CheckBox();
+            this.PushNotifications = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -200,6 +202,7 @@
             this.tbFonts.Name = "tbFonts";
             this.tbFonts.Size = new System.Drawing.Size(174, 20);
             this.tbFonts.TabIndex = 14;
+            this.tbFonts.Text = "sdas";
             this.tbFonts.TextChanged += new System.EventHandler(this.tbFonts_TextChanged);
             // 
             // defrag
@@ -213,11 +216,34 @@
             this.defrag.UseVisualStyleBackColor = true;
             this.defrag.CheckedChanged += new System.EventHandler(this.defrag_CheckedChanged);
             // 
+            // cmdshka
+            // 
+            this.cmdshka.AutoSize = true;
+            this.cmdshka.Location = new System.Drawing.Point(457, 160);
+            this.cmdshka.Name = "cmdshka";
+            this.cmdshka.Size = new System.Drawing.Size(170, 17);
+            this.cmdshka.TabIndex = 16;
+            this.cmdshka.Text = "Включение/отключение cmd";
+            this.cmdshka.UseVisualStyleBackColor = true;
+            this.cmdshka.CheckedChanged += new System.EventHandler(this.cmdshka_CheckedChanged);
+            // 
+            // PushNotifications
+            // 
+            this.PushNotifications.AutoSize = true;
+            this.PushNotifications.Location = new System.Drawing.Point(235, 170);
+            this.PushNotifications.Name = "PushNotifications";
+            this.PushNotifications.Size = new System.Drawing.Size(217, 17);
+            this.PushNotifications.TabIndex = 17;
+            this.PushNotifications.Text = "Включение/отключение уведомлений";
+            this.PushNotifications.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 545);
+            this.Controls.Add(this.PushNotifications);
+            this.Controls.Add(this.cmdshka);
             this.Controls.Add(this.defrag);
             this.Controls.Add(this.tbFonts);
             this.Controls.Add(this.cbChangeFonts);
@@ -261,6 +287,8 @@
         private System.Windows.Forms.CheckBox cbChangeFonts;
         private System.Windows.Forms.TextBox tbFonts;
         private System.Windows.Forms.CheckBox defrag;
+        private System.Windows.Forms.CheckBox cmdshka;
+        private System.Windows.Forms.CheckBox PushNotifications;
     }
 }
 
