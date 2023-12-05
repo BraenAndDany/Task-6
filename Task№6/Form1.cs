@@ -11,6 +11,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Microsoft.Win32;
 using DWORD = System.UInt32;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace Task_6
 {
@@ -187,14 +189,15 @@ namespace Task_6
             if (Bng.Checked == true)
             {
                 RegistryKey keyAuto = Registry.CurrentUser;
-                RegistryKey bg = keyAuto.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer", true);
-                bg.SetValue("DisableSearchBoxSuggestions", "1", RegistryValueKind.DWord);
+                RegistryKey bg = keyAuto.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Search", true);
+                bg.SetValue("SearchboxTaskbarMode", "0", RegistryValueKind.DWord);
+
             }
             else
             {
                 RegistryKey keyAuto = Registry.CurrentUser;;
-                RegistryKey bg = keyAuto.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer", true);
-                bg.SetValue("DisableSearchBoxSuggestions", "0", RegistryValueKind.DWord);
+                RegistryKey bg = keyAuto.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Search", true);
+                bg.SetValue("SearchboxTaskbarMode", "2", RegistryValueKind.DWord);
             }
         }
         public void Opacitybk()
@@ -263,28 +266,104 @@ namespace Task_6
 
                 RegistryKey keyAuto1 = Registry.ClassesRoot;
                 RegistryKey copy = keyAuto1.OpenSubKey("AllFilesystemObjects\\shellex\\ContextMenuHandlers\\Copy To", true);
-                if (copy.GetValue("") == "{C2FBB630-2971-11D1-A18C-00C04FD75D13}")
+                if (copy.GetValue("").ToString() == "{C2FBB630-2971-11D1-A18C-00C04FD75D13}")
                 {
                     dir.Checked = true;
                 }
 
-            RegistryKey keyAuto2 = Registry.Users;
-            RegistryKey opacity0 = keyAuto2.OpenSubKey(".DEFAULT\\Control Panel\\Keyboard", true);
-            if (opacity0.GetValue("InitialKeyboardIndicators") == "2")
-            {
-                NumLck.Checked = true;
-            }
+                RegistryKey keyAuto2 = Registry.Users;
+                RegistryKey opacity0 = keyAuto2.OpenSubKey(".DEFAULT\\Control Panel\\Keyboard", true);
+                if (opacity0.GetValue("InitialKeyboardIndicators").ToString() == "2")
+                {
+                    NumLck.Checked = true;
+                }
 
-            RegistryKey keyAuto3 = Registry.CurrentUser;
-            RegistryKey opacity1 = keyAuto3.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
-            if (opacity1.GetValue("EnableTransparency", RegistryValueKind.DWord) == "1")
-            {
-                cbOpacity.Checked = true;
-            }
+                RegistryKey keyAuto3 = Registry.CurrentUser;
+                RegistryKey opacity1 = keyAuto3.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+                if (opacity1.GetValue("EnableTransparency", RegistryValueKind.DWord).ToString() == "1")
+                {
+                    cbOpacity.Checked = true;
+                }
+
+                RegistryKey keyAuto4 = Registry.CurrentUser;
+                RegistryKey time0 = keyAuto4.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer", true);
+                if (time0.GetValue("DisableNotificationCenter",  RegistryValueKind.DWord).ToString() == "1")
+                {
+                   PushNotifications.Checked = true;
+                }
+
+                RegistryKey keyAuto5 = Registry.ClassesRoot;
+                RegistryKey OpenDF0 = keyAuto5.OpenSubKey("Directory\\background\\shell\\cmdshka", true);
+
+                if (OpenDF0 == null)
+                {
+                    cmdshka.Checked = false;
+                }
+
+                RegistryKey keyAuto6 = Registry.ClassesRoot;
+                RegistryKey OpenDF1 = keyAuto6.OpenSubKey("Directory\\background\\shell\\Defrag", true);
+
+                if (OpenDF1 == null)
+                {
+                    defrag.Checked = false;
+                }
+
+                RegistryKey keyAuto7 = Registry.CurrentUser;
+                RegistryKey time1 = keyAuto7.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced", true);    
+                if (time1.GetValue("ShowSecondsInSystemClock").ToString() == "1")
+                {
+                    cbTime.Checked = true;
+                }
+
+                RegistryKey keyAuto8 = Registry.CurrentUser;
+                RegistryKey theme0 = keyAuto8.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+                if (theme0.GetValue("AppsUseLightTheme", RegistryValueKind.DWord).ToString() == "1")
+                {
+                    cbChangedTheme.Checked = true;
+                }
+
+                try
+                {
+                    List<string> serversList = new List<string>();
+                    serversList.Add("google.com"); //address
+                    Ping ping = new System.Net.NetworkInformation.Ping();
+                    PingReply pingReply = null;
+
+                    foreach (string server in serversList)
+                    {
+                        pingReply = ping.Send(server);
+
+                        if (pingReply.Status != IPStatus.TimedOut)
+                        {
+                            Internet.Checked = false;
+                        }
+
+                    }
+                }
+                catch
+                {
+                    Internet.Checked = true;
+                }
+
+                RegistryKey currentUserKey = Registry.CurrentUser;
+                RegistryKey helloKey = currentUserKey.OpenSubKey("Control Panel\\Desktop\\WindowMetrics", true);
+                if (helloKey.GetValue("MinAnimate").ToString() == "0")
+                {
+                   AnimationInterface.Checked = true;
+                }
+                helloKey.Close();
 
 
+                RegistryKey keyAuto9 = Registry.CurrentUser;
+                RegistryKey bg = keyAuto9.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer", true);
+                if (bg.GetValue("DisableSearchBoxSuggestions", RegistryValueKind.DWord).ToString() == "1")
+                {
+                    Bng.Checked = true;
+                }
 
-
+                RegistryKey keyAuto10 = Registry.Users;
+                RegistryKey busket = keyAuto10.OpenSubKey("S-1-5-21-4214029148-1305989752-1630343126-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CLSID\\{645FF040-5081-101B-9F08-00AA002F954E}", true);
+                tbRenameBuck.Text = busket.GetValue("").ToString();
 
         }
 
@@ -295,6 +374,7 @@ namespace Task_6
             RegistryKey copy = opacity.CreateSubKey("Copy To");
             RegistryKey move = opacity.CreateSubKey("Move To");
             opacity.Close();
+            keyAuto.Close();
             AnimInter();
             InternetConect();
             Time();
@@ -308,7 +388,27 @@ namespace Task_6
             dfrg();
             cmd();
             Notifications();
+
+            DialogResult dr = MessageBox.Show("для корректной работы требуется перезагрузка. Перезагрузить сейчас?",
+                       "", MessageBoxButtons.YesNo);
+            switch (dr)
+            {
+                case DialogResult.Yes:
+                    Process.Start("shutdown", "/r /t 00");
+                    break;
+                case DialogResult.No:
+                    string strCmdText;
+                    strCmdText = "/c taskkill /f /im explorer.exe";
+
+                    System.Diagnostics.Process.Start("cmd.exe", strCmdText);
+                    System.Threading.Thread.Sleep(500);
+                    Process.Start(Environment.SystemDirectory + "\\..\\explorer.exe");
+                    break;
+            }
+
+
         }
+
 
         private void tbRenameBuck_TextChanged(object sender, EventArgs e)
         {
@@ -366,6 +466,11 @@ namespace Task_6
         }
 
         private void cmdshka_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Bng_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -32,7 +32,6 @@
             this.btnApp = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tbRenameBuck = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.AnimationInterface = new System.Windows.Forms.CheckBox();
             this.Internet = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -47,6 +46,8 @@
             this.defrag = new System.Windows.Forms.CheckBox();
             this.cmdshka = new System.Windows.Forms.CheckBox();
             this.PushNotifications = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -89,15 +90,6 @@
             this.tbRenameBuck.Size = new System.Drawing.Size(173, 20);
             this.tbRenameBuck.TabIndex = 3;
             this.tbRenameBuck.TextChanged += new System.EventHandler(this.tbRenameBuck_TextChanged);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(413, 317);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(187, 96);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // AnimationInterface
             // 
@@ -163,6 +155,7 @@
             this.Bng.TabIndex = 10;
             this.Bng.Text = "Отключение и включение Bing";
             this.Bng.UseVisualStyleBackColor = true;
+            this.Bng.CheckedChanged += new System.EventHandler(this.Bng_CheckedChanged);
             // 
             // NumLck
             // 
@@ -208,6 +201,8 @@
             // defrag
             // 
             this.defrag.AutoSize = true;
+            this.defrag.Checked = true;
+            this.defrag.CheckState = System.Windows.Forms.CheckState.Checked;
             this.defrag.Location = new System.Drawing.Point(235, 147);
             this.defrag.Name = "defrag";
             this.defrag.Size = new System.Drawing.Size(165, 17);
@@ -219,6 +214,8 @@
             // cmdshka
             // 
             this.cmdshka.AutoSize = true;
+            this.cmdshka.Checked = true;
+            this.cmdshka.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cmdshka.Location = new System.Drawing.Point(457, 160);
             this.cmdshka.Name = "cmdshka";
             this.cmdshka.Size = new System.Drawing.Size(170, 17);
@@ -237,11 +234,31 @@
             this.PushNotifications.Text = "Включение/отключение уведомлений";
             this.PushNotifications.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "label2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 160);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 65);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Примеры шрифтов:\r\nArial\r\nMS Serif\r\nTahoma\r\nTimes New Roman";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 545);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.PushNotifications);
             this.Controls.Add(this.cmdshka);
             this.Controls.Add(this.defrag);
@@ -254,7 +271,6 @@
             this.Controls.Add(this.cbTime);
             this.Controls.Add(this.Internet);
             this.Controls.Add(this.AnimationInterface);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.tbRenameBuck);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.btnApp);
@@ -274,7 +290,6 @@
         private System.Windows.Forms.Button btnApp;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox tbRenameBuck;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.CheckBox AnimationInterface;
         private System.Windows.Forms.CheckBox Internet;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -289,6 +304,8 @@
         private System.Windows.Forms.CheckBox defrag;
         private System.Windows.Forms.CheckBox cmdshka;
         private System.Windows.Forms.CheckBox PushNotifications;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
